@@ -1,8 +1,12 @@
+<script lang="ts">
+	import { _ } from '$lib/i18n';
+</script>
+
 <footer class="footer">
 	<div class="footer-container">
 		<div>
-			<h3>My Website</h3>
-			<p>&copy; 2024 All rights reserved.</p>
+			<h3>{$_('footer.title')}</h3>
+			<p>&copy; 2026 {$_('footer.rights')}</p>
 		</div>
 	</div>
 </footer>

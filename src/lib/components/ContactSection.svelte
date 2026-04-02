@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { contact } from '$lib';
+	import { _ } from '$lib/i18n';
 </script>
 
 <section id="contact" class="contact-section">
-	<h1 class="titel">Contact<span class="profile-function">.</span></h1>
+	<h1 class="titel">{$_('contact.title')}<span class="profile-function">.</span></h1>
 	<div class="contact-card">
 		<p>
-			Stuur mij gerust een mail of een berichtje via <a href="https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/" target="_blank" class="app-link" rel="noreferrer">Linkedin</a> als je contact wilt opnemen.
+			{$_('contact.introPrefix')}
+			<a href="https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/" target="_blank" class="app-link" rel="noreferrer">{$_('contact.linkedinLabel')}</a>
+			{$_('contact.introSuffix')}
 		</p>
 		<div class="contact-mail">
 			<svg fill="#a9a9a9" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" class="mail-icon">
@@ -14,7 +17,7 @@
 			</svg>
 			<a href="mailto:{contact.email}">{contact.email}</a>
 		</div>
-		<a href="mailto:{contact.email}" class="hero-button">Stuur een mail</a>
+		<a href="mailto:{contact.email}" class="hero-button">{$_('contact.sendMail')}</a>
 	</div>
 </section>
 

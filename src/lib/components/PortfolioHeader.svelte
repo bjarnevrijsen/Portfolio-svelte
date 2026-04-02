@@ -1,5 +1,6 @@
 <script lang="ts">
 	import cv from '$lib/assets/cv.pdf';
+	import { _, currentLocale, setAppLocale } from '$lib/i18n';
 
 	let isOpen = $state(false);
 
@@ -21,13 +22,19 @@
 	</div>
 	<nav class="navbar" class:show={isOpen}>
 		<ul>
-			<li><button class="header-link" onclick={() => scrollTo('about')}>Over Mij</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('project')}>Projecten</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('exp')}>Ervaringen</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('contact')}>Contact</button></li>
+			<li><button class="header-link" onclick={() => scrollTo('about')}>{$_('header.about')}</button></li>
+			<li><button class="header-link" onclick={() => scrollTo('project')}>{$_('header.projects')}</button></li>
+			<li><button class="header-link" onclick={() => scrollTo('exp')}>{$_('header.experience')}</button></li>
+			<li><button class="header-link" onclick={() => scrollTo('contact')}>{$_('header.contact')}</button></li>
 		</ul>
 	</nav>
-	<a href={cv} target="_blank" rel="noreferrer" class="contact-button">Mijn CV</a>
+	<div class="header-actions">
+		<div class="locale-switch" aria-label={$_('header.languageLabel')}>
+			<button class="locale-button" class:active={$currentLocale === 'nl'} onclick={() => setAppLocale('nl')}>NL</button>
+			<button class="locale-button" class:active={$currentLocale === 'en'} onclick={() => setAppLocale('en')}>EN</button>
+		</div>
+		<a href={cv} target="_blank" rel="noreferrer" class="contact-button">{$_('header.cv')}</a>
+	</div>
 </header>
 
 <style>
@@ -114,6 +121,39 @@
 		text-decoration: none;
 	}
 
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.locale-switch {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.25rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.locale-button {
+		min-width: 40px;
+		height: 32px;
+		border-radius: 999px;
+		border: none;
+		background: transparent;
+		color: var(--text);
+		font-size: 0.75rem;
+		font-weight: 700;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.locale-button.active {
+		background: rgba(51, 227, 184, 0.24);
+	}
+
 	.contact-button:hover {
 		transform: translateY(-1px);
 	}
@@ -126,6 +166,10 @@
 	}
 
 	@media (max-width: 700px) {
+		.header-actions {
+			margin-left: auto;
+		}
+
 		.navbar {
 			position: fixed;
 			inset: auto 20px 0 20px;

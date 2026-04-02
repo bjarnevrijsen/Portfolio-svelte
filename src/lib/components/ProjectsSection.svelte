@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { projects } from '$lib';
+	import { projectsByLocale } from '$lib';
 	import ProjectCard from './ProjectCard.svelte';
+	import { _, currentLocale } from '$lib/i18n';
 </script>
 
 <section id="project">
-	<h1 class="titel" data-pseudo="before">Projecten<span class="profile-function">.</span></h1>
+	<h1 class="titel" data-pseudo="before">{$_('projects.title')}<span class="profile-function">.</span></h1>
 	<div class="project-section">
-		{#each projects as project}
+		{#each projectsByLocale[$currentLocale] as project}
 			<ProjectCard {project} />
 		{/each}
 	</div>

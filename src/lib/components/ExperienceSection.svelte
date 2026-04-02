@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { experiences } from '$lib';
+	import { experiencesByLocale } from '$lib';
 	import ExperienceCard from './ExperienceCard.svelte';
+	import { _, currentLocale } from '$lib/i18n';
 </script>
 
 <section id="exp">
-	<h1 class="titel" data-pseudo="after">Ervaringen<span class="profile-function">.</span></h1>
-	{#each experiences as exp}
+	<h1 class="titel" data-pseudo="after">{$_('experience.title')}<span class="profile-function">.</span></h1>
+	{#each experiencesByLocale[$currentLocale] as exp}
 		<ExperienceCard {exp} />
 	{/each}
 </section>

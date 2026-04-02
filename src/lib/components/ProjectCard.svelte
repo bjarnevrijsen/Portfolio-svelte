@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Project } from '$lib';
+	import { _ } from '$lib/i18n';
 	const { project }: { project: Project } = $props();
 
 	let isModalOpen = $state(false);
@@ -27,17 +28,17 @@
 	</div>
 	<div class="project-card-description">
 		<p>{project.descriptionShort}</p>
-		<button class="project-card-button" onclick={openModal}>Lees Meer {'>'}</button>
+		<button class="project-card-button" onclick={openModal}>{$_('projects.readMore')}</button>
 	</div>
 </div>
 
 {#if isModalOpen}
 	<div class="modal-overlay" role="button" tabindex="0" onclick={closeModal} onkeydown={(e) => e.key === 'Escape' && closeModal()}>
-		<button class="close-button" onclick={closeModal}>X</button>
+		<button class="close-button" onclick={closeModal} aria-label={$_('projects.closeModal')}>X</button>
 		<!-- svelte-ignore a11y_interactive_supports_focus -->
 		<div class="modal-content" role="dialog" onclick={(e) => e.stopPropagation()} onkeydown={() => {}}>
 			{#if project.imageSrc && project.imageSrc.length > 0}
-				<img class="modal-image" src={project.imageSrc[0]} alt="project" />
+				<img class="modal-image" src={project.imageSrc[0]} alt={$_('projects.imageAlt')} />
 			{/if}
 			<div class="modal-text">
 				<h2 class="modal-title">{project.title}</h2>

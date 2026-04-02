@@ -6,14 +6,12 @@
 	import ProjectsSection from '$lib/components/ProjectsSection.svelte';
 	import ContactSection from '$lib/components/ContactSection.svelte';
 	import PortfolioFooter from '$lib/components/PortfolioFooter.svelte';
+	import { _ } from '$lib/i18n';
 </script>
 
 <svelte:head>
-	<title>Bjarne Vrijsen</title>
-	<meta
-		name="description"
-		content="Portfolio van Bjarne Vrijsen, frontend developer met focus op moderne webapplicaties en sterke UI."
-	/>
+	<title>{$_('meta.title')}</title>
+	<meta name="description" content={$_('meta.description')} />
 </svelte:head>
 
 <div class="app">

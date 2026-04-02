@@ -1,13 +1,17 @@
+<script lang="ts">
+	import { _ } from '$lib/i18n';
+</script>
+
 <section>
 	<div class="app-profile">
 		<div class="app-name">
-			<p>Hey, ik ben Bjarne Vrijsen<span class="profile-function">.</span></p>
+			<p>{$_('hero.intro')}<span class="profile-function">.</span></p>
 		</div>
-		<h2>En ik ben een <span class="profile-function">Software Developer</span></h2>
-		<p>Ik ben gepassioneerd in het bouwen van webapplicaties die gebruiksvriendelijk, aantrekkelijk en toegankelijk zijn.</p>
+		<h2>{$_('hero.rolePrefix')} <span class="profile-function">{$_('hero.role')}</span></h2>
+		<p>{$_('hero.description')}</p>
 		<div class="hero-actions">
-			<a href="#project" class="hero-button">Bekijk projecten</a>
-			<a href="#contact" class="hero-secondary">Neem contact op</a>
+			<a href="#project" class="hero-button">{$_('hero.viewProjects')}</a>
+			<a href="#contact" class="hero-secondary">{$_('hero.contact')}</a>
 		</div>
 	</div>
 </section>

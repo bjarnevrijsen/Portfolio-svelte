@@ -1,28 +1,28 @@
 <script lang="ts">
-	import { skills } from '$lib';
+	import { aboutParagraphsByLocale, freeTimeSkillsByLocale, skills } from '$lib';
+	import { _, currentLocale } from '$lib/i18n';
 </script>
 
 <section id="about">
-	<h1 class="titel" data-pseudo="after">Over Mij<span class="profile-function">.</span></h1>
+	<h1 class="titel" data-pseudo="after">{$_('about.title')}<span class="profile-function">.</span></h1>
 	<div class="about-content">
 		<div class="about-card">
-			<p>Ik ben Bjarne Vrijsen, recent afgestudeerd in Elektronica-ICT aan de UCLL met als afstudeerrichting ICT met een sterke focus op front-end ontwikkeling en moderne webtechnologieën.</p>
-			<p>Tijdens mijn studie heb ik veel ervaring opgedaan met frameworks zoals Vue.js en TypeScript, en heb ik verschillende projecten gerealiseerd, waaronder applicaties in .NET MAUI en Kotlin.</p>
-			<p>Momenteel ben ik op zoek naar een uitdagende rol als front-end developer waar ik mijn technische vaardigheden verder kan ontwikkelen en kan bijdragen aan innovatieve, gebruiksvriendelijke digitale oplossingen.</p>
+			{#each aboutParagraphsByLocale[$currentLocale] as paragraph}
+				<p>{paragraph}</p>
+			{/each}
 		</div>
 		<div class="about-skills">
-			<h1>Tijdens Opleiding:</h1>
+			<h1>{$_('about.education')}</h1>
 			<div class="circle-container">
 				{#each skills as skill}
 					<span>{skill}</span>
 				{/each}
 			</div>
-			<h1>Vrije tijd:</h1>
+			<h1>{$_('about.freeTime')}</h1>
 			<div class="circle-container">
-				<span>Godot</span>
-				<span>Java</span>
-				<span>Python</span>
-				<span>React</span>
+				{#each freeTimeSkillsByLocale[$currentLocale] as skill}
+					<span>{skill}</span>
+				{/each}
 			</div>
 		</div>
 	</div>
