@@ -1,6 +1,7 @@
 <script lang="ts">
 	import cv from '$lib/assets/cv.pdf';
 	import { _, currentLocale, setAppLocale } from '$lib/i18n';
+	import { clickOutside } from '$lib/util';
 
 	let isOpen = $state(false);
 
@@ -13,28 +14,43 @@
 		const el = document.getElementById(id);
 		if (el) el.scrollIntoView({ behavior: 'smooth' });
 	}
+
+	function changeLocale(nextLocale: 'nl' | 'en') {
+		setAppLocale(nextLocale);
+		isOpen = false;
+	}
+
+	function closeMenu() {
+		isOpen = false;
+	}
 </script>
 
 <header class="app-header">
 	<div class="header-left">
-		<button class="menu-toggle" onclick={toggleMenu}>☰</button>
 		<button class="header-link name-link" onclick={() => scrollTo('home')}>Bjarne Vrijsen</button>
 	</div>
-	<nav class="navbar" class:show={isOpen}>
-		<ul>
-			<li><button class="header-link" onclick={() => scrollTo('about')}>{$_('header.about')}</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('project')}>{$_('header.projects')}</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('exp')}>{$_('header.experience')}</button></li>
-			<li><button class="header-link" onclick={() => scrollTo('contact')}>{$_('header.contact')}</button></li>
-		</ul>
+	<nav class="navbar" class:show={isOpen} use:clickOutside={() => (isOpen = false)}>
+		<button class="header-link" onclick={() => scrollTo('about')}>{$_('header.about')}</button>
+		<button class="header-link" onclick={() => scrollTo('project')}>{$_('header.projects')}</button>
+		<button class="header-link" onclick={() => scrollTo('exp')}>{$_('header.experience')}</button>
+		<button class="header-link" onclick={() => scrollTo('contact')}>{$_('header.contact')}</button>
+
+		<div class="mobile-actions">
+			<div class="locale-switch" aria-label={$_('header.languageLabel')}>
+				<button class="locale-button" class:active={$currentLocale === 'nl'} onclick={() => changeLocale('nl')}>NL</button>
+				<button class="locale-button" class:active={$currentLocale === 'en'} onclick={() => changeLocale('en')}>EN</button>
+			</div>
+			<a href={cv} target="_blank" rel="noreferrer" class="contact-button" onclick={closeMenu}>{$_('header.cv')}</a>
+		</div>
 	</nav>
-	<div class="header-actions">
+	<div class="header-actions desktop-actions">
 		<div class="locale-switch" aria-label={$_('header.languageLabel')}>
 			<button class="locale-button" class:active={$currentLocale === 'nl'} onclick={() => setAppLocale('nl')}>NL</button>
 			<button class="locale-button" class:active={$currentLocale === 'en'} onclick={() => setAppLocale('en')}>EN</button>
 		</div>
 		<a href={cv} target="_blank" rel="noreferrer" class="contact-button">{$_('header.cv')}</a>
 	</div>
+	<button class="menu-toggle" onclick={toggleMenu} aria-label="Open menu">☰</button>
 </header>
 
 <style>
@@ -84,27 +100,23 @@
 	.navbar {
 		display: flex;
 		justify-content: center;
+		gap: 0.35rem;
 	}
 
-	.navbar ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		gap: 1rem;
-	}
-
-	.navbar li {
-		margin: 0;
+	.mobile-actions {
+		display: none;
 	}
 
 	.menu-toggle {
 		display: none;
 		cursor: pointer;
+		width: 42px;
+		height: 42px;
+		border-radius: 999px;
 		font-size: 1.5rem;
 		color: var(--text);
-		background: none;
-		border: none;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.12);
 	}
 
 	.contact-button {
@@ -160,12 +172,18 @@
 
 	@media (max-width: 850px) {
 		.app-header {
-			width: calc(100% - 30px);
-			padding: 0.9rem 1rem;
+			width: calc(100%);
+			padding: 0.75rem 0.5rem;
+			top: 0px;
+			border-radius: 0;
 		}
 	}
 
 	@media (max-width: 700px) {
+		.desktop-actions {
+			display: none;
+		}
+
 		.header-actions {
 			margin-left: auto;
 		}
@@ -183,16 +201,12 @@
 			border-radius: 24px;
 			padding: 1rem;
 			box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+			border: 1px solid rgba(255, 255, 255, 0.1);
 			display: none;
 		}
 
 		.navbar.show {
 			display: flex;
-		}
-
-		.navbar ul {
-			flex-direction: column;
-			gap: 0.75rem;
 		}
 
 		.navbar :global(button) {
@@ -202,6 +216,22 @@
 			background: rgba(255, 255, 255, 0.04);
 			width: 100%;
 			text-align: left;
+		}
+
+		.mobile-actions {
+			display: grid;
+			gap: 0.75rem;
+			padding-top: 0.6rem;
+			margin-top: 0.4rem;
+			border-top: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.mobile-actions .locale-switch {
+			width: fit-content;
+		}
+
+		.mobile-actions .contact-button {
+			width: fit-content;
 		}
 
 		.menu-toggle {
