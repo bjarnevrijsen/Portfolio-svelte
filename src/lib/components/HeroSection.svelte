@@ -1,40 +1,110 @@
-<section class="px-6 py-20">
-	<div class="mx-auto max-w-6xl">
-		<div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-			<div>
-				<p class="inline-flex rounded-full bg-sky-500/10 px-4 py-1 text-sm uppercase tracking-[0.35em] text-sky-300">Front-end developer</p>
-				<h1 class="mt-8 text-5xl font-extrabold leading-tight tracking-[-0.03em] sm:text-6xl">
-					Hey, ik ben <span class="text-sky-300">Bjarne Vrijsen</span>.
-					<br />
-					En ik ben een <span class="text-sky-300">Software Developer</span>
-				</h1>
-				<p class="mt-6 max-w-2xl text-slate-300 leading-8">
-					Ik ben gepassioneerd in het bouwen van webapplicaties die gebruiksvriendelijk, aantrekkelijk en toegankelijk zijn.
-				</p>
-				<div class="mt-10 flex flex-col gap-4 sm:flex-row">
-					<a href="#project" class="inline-flex items-center justify-center rounded-full bg-linear-to-r from-sky-400 to-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-110">Bekijk projecten</a>
-					<a href="#contact" class="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-500">Neem contact op</a>
-				</div>
-			</div>
-			<div class="rounded-4xl border border-white/10 bg-slate-900/90 p-8 shadow-[0_30px_80px_-40px_rgba(14,165,233,0.75)]">
-				<div class="space-y-4 text-slate-300">
-					<div class="rounded-3xl bg-slate-950 p-6">
-						<p class="text-sm uppercase tracking-[0.35em] text-sky-300">Snelle stat</p>
-						<h2 class="mt-4 text-3xl font-semibold text-slate-100">4+ jaar ervaring</h2>
-						<p class="mt-3 text-sm leading-6 text-slate-400">Ik werk aan schaalbare webprojecten voor productteams en kleine bedrijven.</p>
-					</div>
-					<div class="grid gap-4 sm:grid-cols-2">
-						<div class="rounded-3xl bg-slate-950 p-5">
-							<p class="text-sm uppercase tracking-[0.35em] text-slate-500">Focus</p>
-							<p class="mt-3 text-xl font-semibold text-slate-100">Snelheid & toegankelijkheid</p>
-						</div>
-						<div class="rounded-3xl bg-slate-950 p-5">
-							<p class="text-sm uppercase tracking-[0.35em] text-slate-500">Tools</p>
-							<p class="mt-3 text-xl font-semibold text-slate-100">Svelte, Tailwind, TypeScript</p>
-						</div>
-					</div>
-				</div>
-			</div>
+<section>
+	<div class="app-profile">
+		<div class="app-name">
+			<p>Hey, ik ben Bjarne Vrijsen<span class="profile-function">.</span></p>
+		</div>
+		<h2>En ik ben een <span class="profile-function">Software Developer</span></h2>
+		<p>Ik ben gepassioneerd in het bouwen van webapplicaties die gebruiksvriendelijk, aantrekkelijk en toegankelijk zijn.</p>
+		<div class="hero-actions">
+			<a href="#project" class="hero-button">Bekijk projecten</a>
+			<a href="#contact" class="hero-secondary">Neem contact op</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	.app-profile {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 1.5rem;
+		padding: 3rem 2.5rem;
+		border-radius: 32px;
+		background: rgba(11, 18, 32, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 32px 90px rgba(0, 0, 0, 0.25);
+	}
+
+	.app-name {
+		font-size: clamp(2.8rem, 5vw, 4.5rem);
+		font-weight: 900;
+		line-height: 0.95;
+	}
+
+	.app-name p {
+		margin: 0;
+	}
+
+	.app-profile h2 {
+		margin: 0;
+		font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+	}
+
+	.app-profile p {
+		margin: 0;
+		max-width: 720px;
+		color: var(--muted);
+		font-size: 1rem;
+		line-height: 1.85;
+	}
+
+	.profile-function {
+		color: var(--accent);
+		font-weight: 900;
+		font-size: 1.05em;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.hero-button,
+	.hero-secondary {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 48px;
+		padding: 0 1.5rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		text-decoration: none;
+		color: var(--text);
+		transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+	}
+
+	.hero-button {
+		background: linear-gradient(135deg, #29d0b7, #35b7ff);
+		color: #09101c;
+		font-weight: 700;
+	}
+
+	.hero-button:hover {
+		transform: translateY(-1px);
+	}
+
+	.hero-secondary {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(255, 255, 255, 0.16);
+	}
+
+	.hero-secondary:hover {
+		background: rgba(255, 255, 255, 0.14);
+	}
+
+	@media (max-width: 900px) {
+		.app-profile {
+			padding: 2.2rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.app-name {
+			font-size: 2.8rem;
+		}
+	}
+</style>

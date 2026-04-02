@@ -1,16 +1,248 @@
 <script lang="ts">
 	import type { Project } from '$lib';
-	const { project }: { project: Project } = $props()
+	const { project }: { project: Project } = $props();
+
+	let isModalOpen = $state(false);
+
+	function openModal() {
+		isModalOpen = true;
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal() {
+		isModalOpen = false;
+		document.body.style.overflow = 'auto';
+	}
 </script>
 
-<article class="group rounded-4xl border border-white/10 bg-slate-900 p-6 transition hover:-translate-y-1 hover:border-sky-500/20 shadow-lg shadow-slate-950/10">
-	<img src={project.imageFrontSrc} alt={project.title} class="h-56 w-full rounded-3xl object-cover" />
-	<h3 class="mt-6 text-xl font-semibold text-slate-100">{project.title}</h3>
-	<p class="mt-4 text-slate-400 leading-7">{project.descriptionShort}</p>
-	<div class="mt-5 flex flex-wrap gap-2">
+<div>
+	<div class="project-card" role="button" tabindex="0" onclick={openModal} onkeydown={(e) => e.key === 'Enter' && openModal()}>
+		<img src={project.imageFrontSrc} alt={project.title} class="project-card-image" />
+	</div>
+	<h3 class="project-card-title">{project.title}</h3>
+	<div class="circle-container">
 		{#each project.tags as tag}
-			<span class="rounded-full bg-slate-800 px-3 py-1 text-xs uppercase tracking-[0.35em] text-slate-400">{tag}</span>
+			<span>{tag}</span>
 		{/each}
 	</div>
-	<a href={project.link} target="_blank" rel="noreferrer" class="mt-6 inline-flex rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-sky-300 transition hover:bg-slate-800">Bekijk project</a>
-</article>
+	<div class="project-card-description">
+		<p>{project.descriptionShort}</p>
+		<button class="project-card-button" onclick={openModal}>Lees Meer {'>'}</button>
+	</div>
+</div>
+
+{#if isModalOpen}
+	<div class="modal-overlay" role="button" tabindex="0" onclick={closeModal} onkeydown={(e) => e.key === 'Escape' && closeModal()}>
+		<button class="close-button" onclick={closeModal}>X</button>
+		<!-- svelte-ignore a11y_interactive_supports_focus -->
+		<div class="modal-content" role="dialog" onclick={(e) => e.stopPropagation()} onkeydown={() => {}}>
+			{#if project.imageSrc && project.imageSrc.length > 0}
+				<img class="modal-image" src={project.imageSrc[0]} alt="project" />
+			{/if}
+			<div class="modal-text">
+				<h2 class="modal-title">{project.title}</h2>
+				<div class="circle-container">
+					{#each project.tags as tag}
+						<span>{tag}</span>
+					{/each}
+				</div>
+				<div class="modal-description">
+					<p>{project.descriptionShort}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
+
+<style>
+	.project-card {
+		font-size: 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		text-align: start;
+		color: var(--text);
+		border-radius: 28px;
+		background: rgba(9, 18, 34, 0.88);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+		cursor: pointer;
+		overflow: hidden;
+	}
+
+	.project-card:hover {
+		transform: translateY(-4px);
+		border-color: rgba(51, 227, 184, 0.35);
+		box-shadow: 0 38px 100px rgba(0, 0, 0, 0.28);
+	}
+
+	.project-card-image {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		display: block;
+	}
+
+	.project-card-title {
+		font-size: 1.5rem;
+		font-weight: 800;
+		margin: 1.15rem 1.25rem 0.75rem;
+		color: var(--text);
+	}
+
+	.project-card-description {
+		padding: 0 1.25rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		color: var(--muted);
+	}
+
+	.project-card-description p {
+		margin: 0;
+		line-height: 1.75;
+	}
+
+	.project-card-button {
+		align-self: flex-start;
+		background: rgba(51, 227, 184, 0.14);
+		color: var(--accent);
+		border: 1px solid rgba(51, 227, 184, 0.24);
+		border-radius: 999px;
+		padding: 0.75rem 1.2rem;
+		cursor: pointer;
+		transition: transform 0.2s ease, background 0.2s ease;
+	}
+
+	.project-card-button:hover {
+		transform: translateY(-1px);
+		background: rgba(51, 227, 184, 0.22);
+	}
+
+	.circle-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+		gap: 0.75rem;
+		margin: 0 1.25rem;
+	}
+
+	.circle-container span {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 42px;
+		padding: 0 1rem;
+		background: rgba(255, 255, 255, 0.06);
+		color: var(--text);
+		font-size: 0.95rem;
+		border-radius: 999px;
+		border: 1px solid rgba(51, 227, 184, 0.18);
+		transition: transform 0.25s ease, background-color 0.25s ease;
+	}
+
+	.circle-container span:hover {
+		transform: translateY(-2px);
+		background: rgba(51, 227, 184, 0.14);
+	}
+
+	/* Modal styles */
+	.modal-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(5, 10, 18, 0.8);
+		backdrop-filter: blur(18px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		overflow-y: auto;
+		padding: 2rem;
+	}
+
+	.modal-content {
+		background: rgba(8, 18, 32, 0.96);
+		color: var(--text);
+		border-radius: 28px;
+		max-width: 900px;
+		width: 100%;
+		margin: auto;
+		position: relative;
+		padding: 1.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+	}
+
+	.modal-image {
+		width: 100%;
+		max-height: 500px;
+		object-fit: cover;
+		border-radius: 22px;
+		margin-bottom: 1.2rem;
+	}
+
+	.modal-title {
+		font-size: clamp(1.8rem, 2.3vw, 2.4rem);
+		font-weight: 800;
+		color: var(--text);
+		margin: 0 0 1rem;
+	}
+
+	.modal-text {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.modal-text .circle-container {
+		margin: 0;
+	}
+
+	.modal-description {
+		font-size: 1rem;
+		line-height: 1.8;
+		color: var(--muted);
+	}
+
+	.modal-description p {
+		margin: 0 0 1rem;
+	}
+
+	.close-button {
+		position: absolute;
+		top: 18px;
+		right: 18px;
+		width: 44px;
+		height: 44px;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.05);
+		color: var(--text);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background 0.2s ease;
+		z-index: 1001;
+	}
+
+	.close-button:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	@media (max-width: 768px) {
+		.modal-content {
+			padding: 1.2rem;
+		}
+
+		.modal-title {
+			font-size: 1.8rem;
+		}
+
+		.modal-description {
+			font-size: 0.95rem;
+		}
+
+		.modal-image {
+			max-height: 320px;
+		}
+	}
+</style>

@@ -3,19 +3,42 @@
 	import ExperienceCard from './ExperienceCard.svelte';
 </script>
 
-<section id="exp" class="border-t border-slate-800 px-6 py-20 text-slate-100">
-	<div class="mx-auto max-w-6xl">
-		<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-			<div>
-				<p class="text-sky-300">Ervaringen</p>
-				<h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Stage en werk</h2>
-			</div>
-			<p class="max-w-xl text-slate-400">Een overzicht van mijn praktijkervaring binnen front-end development en projectwerk.</p>
-		</div>
-		<div class="mt-10 grid gap-6">
-			{#each experiences as exp}
-				<ExperienceCard {exp} />
-			{/each}
-		</div>
-	</div>
+<section id="exp">
+	<h1 class="titel" data-pseudo="after">Ervaringen<span class="profile-function">.</span></h1>
+	{#each experiences as exp}
+		<ExperienceCard {exp} />
+	{/each}
 </section>
+
+<style>
+	.titel {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin: 0 0 1.8rem;
+		font-size: clamp(2.4rem, 4vw, 3.6rem);
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		color: var(--text);
+		position: relative;
+		text-align: start;
+	}
+
+	.titel::before,
+	.titel::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+	}
+
+	.titel[data-pseudo='after']::before {
+		display: none;
+	}
+
+	.profile-function {
+		color: var(--accent);
+		font-weight: 900;
+		font-size: 1.05em;
+	}
+</style>

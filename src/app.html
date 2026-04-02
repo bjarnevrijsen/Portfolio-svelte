@@ -4,8 +4,39 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
+		<style>
+			.background--custom {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+			}
+
+			canvas#canvas {
+				z-index: -1;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				transform: rotate(12deg) scale(2) translateY(0%);
+				--gradient-color-1: #305AF6;
+				--gradient-color-2: #1D1B1C;
+				--gradient-color-3: #131616;
+				--gradient-color-4: #0F1313;
+				--gradient-speed: 0.000002;
+			}
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
+		<div class="background--custom">
+			<canvas id="canvas"></canvas>
+		</div>
+		<script src="https://cdn.jsdelivr.net/gh/greentfrapp/pocoloco@minigl/minigl.js"></script>
+		<script>
+			var gradient = new Gradient();
+			gradient.initGradient("#canvas");
+		</script>
 	</body>
 </html>

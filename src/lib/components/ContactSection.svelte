@@ -1,40 +1,119 @@
 <script lang="ts">
-	import { contact, socials } from '$lib';
+	import { contact } from '$lib';
 </script>
 
-<section id="contact" class="border-t border-slate-800 px-6 py-20 text-slate-100">
-	<div class="mx-auto max-w-6xl">
-		<div class="grid gap-10 lg:grid-cols-[0.9fr_0.8fr] lg:items-center">
-			<div>
-				<p class="text-sky-300">Contact</p>
-				<h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Laten we samenwerken</h2>
-				<p class="mt-6 max-w-xl text-slate-300 leading-8">Stuur een bericht voor een nieuw project, een samenwerking of een technische vraag. Ik reageer snel en denk graag mee over je front-end oplossing.</p>
-				<div class="mt-8 flex flex-wrap gap-4">
-					<a href={`mailto:${contact.email}`} class="rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400">Stuur een e-mail</a>
-					<a href="https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/" target="_blank" rel="noreferrer" class="rounded-full border border-slate-700 px-6 py-3 text-sm text-slate-200 transition hover:border-slate-500">Bekijk LinkedIn</a>
-				</div>
-			</div>
-			<div class="rounded-4xl border border-white/10 bg-slate-900/80 p-8 shadow-lg shadow-slate-950/20">
-				<p class="text-sm uppercase tracking-[0.35em] text-sky-300">Snel contact</p>
-				<div class="mt-6 space-y-4 text-slate-300">
-					<div>
-						<p class="text-sm text-slate-500">E-mail</p>
-						<p class="mt-2 text-lg font-semibold text-slate-100">{contact.email}</p>
-					</div>
-					<div>
-						<p class="text-sm text-slate-500">Locatie</p>
-						<p class="mt-2 text-lg font-semibold text-slate-100">{contact.location}</p>
-					</div>
-					<div class="grid gap-3 sm:grid-cols-3">
-						{#each socials as social}
-							<a href={social.href} target="_blank" rel="noreferrer" class="rounded-3xl border border-slate-800 bg-slate-950 px-4 py-3 text-center text-sm text-slate-200 transition hover:border-sky-500/30 hover:text-sky-200">
-								<span>{social.icon}</span>
-								<p class="mt-2">{social.label}</p>
-							</a>
-						{/each}
-					</div>
-				</div>
-			</div>
+<section id="contact" class="contact-section">
+	<h1 class="titel">Contact<span class="profile-function">.</span></h1>
+	<div class="contact-card">
+		<p>
+			Stuur mij gerust een mail of een berichtje via <a href="https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/" target="_blank" class="app-link" rel="noreferrer">Linkedin</a> als je contact wilt opnemen.
+		</p>
+		<div class="contact-mail">
+			<svg fill="#a9a9a9" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" class="mail-icon">
+				<path d="M1920 428.266v1189.54l-464.16-580.146-88.203 70.585 468.679 585.904H83.684l468.679-585.904-88.202-70.585L0 1617.805V428.265l959.944 832.441L1920 428.266ZM1919.932 226v52.627l-959.943 832.44L.045 278.628V226h1919.887Z" fill-rule="evenodd"></path>
+			</svg>
+			<a href="mailto:{contact.email}">{contact.email}</a>
 		</div>
+		<a href="mailto:{contact.email}" class="hero-button">Stuur een mail</a>
 	</div>
 </section>
+
+<style>
+	.contact-section {
+		padding-bottom: 9rem;
+	}
+
+	.titel {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin: 0 0 1.8rem;
+		font-size: clamp(2.4rem, 4vw, 3.6rem);
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		color: var(--text);
+		position: relative;
+	}
+
+	.titel::before,
+	.titel::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+	}
+
+	.profile-function {
+		color: var(--accent);
+		font-weight: 900;
+		font-size: 1.05em;
+	}
+
+	.contact-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		padding: 2rem;
+		border-radius: 28px;
+		background: rgba(12, 22, 38, 0.92);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.contact-card p {
+		margin: 0;
+		color: var(--muted);
+		line-height: 1.8;
+	}
+
+	.app-link {
+		color: var(--accent);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.app-link:hover {
+		color: #8ef3d4;
+	}
+
+	.contact-mail {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: var(--text);
+		transition: color 0.2s ease;
+	}
+
+	.contact-mail:hover {
+		color: var(--accent);
+	}
+
+	.contact-mail a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.mail-icon {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.hero-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 48px;
+		padding: 0 1.5rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		text-decoration: none;
+		background: linear-gradient(135deg, #29d0b7, #35b7ff);
+		color: #09101c;
+		font-weight: 700;
+		transition: transform 0.25s ease, background-color 0.25s ease;
+		align-self: flex-start;
+	}
+
+	.hero-button:hover {
+		transform: translateY(-1px);
+	}
+</style>

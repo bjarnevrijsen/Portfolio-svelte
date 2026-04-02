@@ -3,18 +3,92 @@
 	const { exp }: { exp: Experience } = $props();
 </script>
 
-<article class="rounded-4xl border border-white/10 bg-slate-900 p-8 shadow-lg shadow-slate-950/20">
-	<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-		<div>
-			<p class="text-sky-300 text-sm uppercase tracking-[0.35em]">{exp.title}</p>
-			<h3 class="mt-2 text-2xl font-semibold text-white">{exp.functie}</h3>
-		</div>
-		<p class="text-sm text-slate-400">{exp.periode} · {exp.locatie}</p>
+<div class="exp-card">
+	<div class="exp-header">
+		<h1 class="exp-title">{exp.title}</h1>
+		<p>{exp.periode}</p>
 	</div>
-	<p class="mt-6 text-slate-300 leading-7">{exp.uitleg}</p>
-	<div class="mt-6 flex flex-wrap gap-2">
+	<div class="exp-header">
+		<p class="profile-function">{exp.functie}</p>
+		<p>{exp.locatie}</p>
+	</div>
+	<p>{exp.uitleg}</p>
+	<div class="circle-container">
 		{#each exp.technieken as tech}
-			<span class="rounded-full border border-slate-700 bg-slate-950 px-3 py-2 text-xs uppercase tracking-[0.35em] text-slate-400">{tech}</span>
+			<span>{tech}</span>
 		{/each}
 	</div>
-</article>
+</div>
+
+<style>
+	.exp-card {
+		width: 100%;
+		padding: 1.8rem;
+		border-radius: 28px;
+		background: rgba(11, 20, 36, 0.94);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		box-shadow: 0 28px 60px rgba(0, 0, 0, 0.18);
+		color: var(--text);
+		text-align: start;
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	.exp-card h1,
+	.exp-card p {
+		margin: 0;
+	}
+
+	.exp-card p {
+		color: var(--muted);
+	}
+
+	.exp-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.exp-title {
+		font-size: 1.875rem;
+		font-weight: 700;
+	}
+
+	.profile-function {
+		color: var(--accent);
+		font-weight: 900;
+		font-size: 1.05em;
+	}
+
+	.circle-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.circle-container span {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 42px;
+		padding: 0 1rem;
+		background: rgba(255, 255, 255, 0.06);
+		color: var(--text);
+		font-size: 0.95rem;
+		border-radius: 999px;
+		border: 1px solid rgba(51, 227, 184, 0.18);
+		transition: transform 0.25s ease, background-color 0.25s ease;
+	}
+
+	.circle-container span:hover {
+		transform: translateY(-2px);
+		background: rgba(51, 227, 184, 0.14);
+	}
+
+	@media (max-width: 720px) {
+		.exp-card {
+			padding: 1.4rem;
+		}
+	}
+</style>

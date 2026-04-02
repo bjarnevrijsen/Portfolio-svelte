@@ -3,19 +3,57 @@
 	import ProjectCard from './ProjectCard.svelte';
 </script>
 
-<section id="project" class="border-t border-slate-800 px-6 py-20 text-slate-100">
-	<div class="mx-auto max-w-6xl">
-		<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-			<div>
-				<p class="text-sky-300">Projecten</p>
-				<h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Recent werk</h2>
-			</div>
-			<p class="max-w-xl text-slate-400">Een selectie van projecten die laten zien hoe ik front-end design omzet naar werkende producten.</p>
-		</div>
-		<div class="mt-10 grid gap-6 lg:grid-cols-2">
-			{#each projects as project}
-				<ProjectCard {project} />
-			{/each}
-		</div>
+<section id="project">
+	<h1 class="titel" data-pseudo="before">Projecten<span class="profile-function">.</span></h1>
+	<div class="project-section">
+		{#each projects as project}
+			<ProjectCard {project} />
+		{/each}
 	</div>
 </section>
+
+<style>
+	.titel {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin: 0 0 1.8rem;
+		font-size: clamp(2.4rem, 4vw, 3.6rem);
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		color: var(--text);
+		position: relative;
+		text-align: end;
+	}
+
+	.titel::before,
+	.titel::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+	}
+
+	.titel[data-pseudo='before']::after {
+		display: none;
+	}
+
+	.profile-function {
+		color: var(--accent);
+		font-weight: 900;
+		font-size: 1.05em;
+	}
+
+	.project-section {
+		display: grid;
+		width: 100%;
+		gap: 2rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	@media (max-width: 980px) {
+		.project-section {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
