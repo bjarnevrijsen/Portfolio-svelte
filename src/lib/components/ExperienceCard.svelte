@@ -1,18 +1,19 @@
 <script lang="ts">
 	import type { Experience } from '$lib';
+	import { _ } from '$lib/i18n';
 	const { exp }: { exp: Experience } = $props();
 </script>
 
 <div class="exp-card">
 	<div class="exp-header">
-		<h1 class="exp-title">{exp.title}</h1>
-		<p>{exp.periode}</p>
+		<h1 class="exp-title">{$_(exp.title)}</h1>
+		<p>{$_(exp.periode)}</p>
 	</div>
 	<div class="exp-header">
-		<p class="profile-function">{exp.functie}</p>
-		<p>{exp.locatie}</p>
+		<p class="profile-function">{$_(exp.functie)}</p>
+		<p>{$_(exp.locatie)}</p>
 	</div>
-	<p>{exp.uitleg}</p>
+	<p>{$_(exp.uitleg)}</p>
 	<div class="circle-container">
 		{#each exp.technieken as tech}
 			<span>{tech}</span>
@@ -32,6 +33,7 @@
 		text-align: start;
 		display: grid;
 		gap: 1.1rem;
+		margin-bottom: 1rem;
 	}
 
 	.exp-card h1,

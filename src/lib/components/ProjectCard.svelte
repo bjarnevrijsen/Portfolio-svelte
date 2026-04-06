@@ -18,16 +18,16 @@
 
 <div>
 	<div class="project-card" role="button" tabindex="0" onclick={openModal} onkeydown={(e) => e.key === 'Enter' && openModal()}>
-		<img src={project.imageFrontSrc} alt={project.title} class="project-card-image" />
+		<img src={project.imageFrontSrc} alt={$_(project.title)} class="project-card-image" />
 	</div>
-	<h3 class="project-card-title">{project.title}</h3>
+	<h3 class="project-card-title">{$_(project.title)}</h3>
 	<div class="circle-container">
 		{#each project.tags as tag}
 			<span>{tag}</span>
 		{/each}
 	</div>
 	<div class="project-card-description">
-		<p>{project.descriptionShort}</p>
+		<p>{$_(project.descriptionShort)}</p>
 		<button class="project-card-button" onclick={openModal}>{$_('projects.readMore')}</button>
 	</div>
 </div>
@@ -41,14 +41,17 @@
 				<img class="modal-image" src={project.imageSrc[0]} alt={$_('projects.imageAlt')} />
 			{/if}
 			<div class="modal-text">
-				<h2 class="modal-title">{project.title}</h2>
+				<h2 class="modal-title">{$_(project.title)}</h2>
 				<div class="circle-container">
 					{#each project.tags as tag}
 						<span>{tag}</span>
 					{/each}
 				</div>
 				<div class="modal-description">
-					<p>{project.descriptionShort}</p>
+					<p>{$_(project.descriptionShort)}</p>
+					{#each project.descriptionLong as paragraphKey}
+						<p>{$_(paragraphKey)}</p>
+					{/each}
 				</div>
 			</div>
 		</div>

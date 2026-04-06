@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "title": "Bjarne Vrijsen",
+    "description": "Portfolio van Bjarne Vrijsen, frontend developer met focus op moderne webapplicaties en sterke UI."
+  },
+  "header": {
+    "about": "Over Mij",
+    "projects": "Projecten",
+    "experience": "Ervaringen",
+    "contact": "Contact",
+    "cv": "Mijn CV",
+    "languageLabel": "Taal"
+  },
+  "hero": {
+    "intro": "Hey, ik ben Bjarne Vrijsen",
+    "rolePrefix": "En ik ben een",
+    "role": "Software Developer",
+    "description": "Ik ben gepassioneerd in het bouwen van webapplicaties die gebruiksvriendelijk, aantrekkelijk en toegankelijk zijn.",
+    "viewProjects": "Bekijk projecten",
+    "contact": "Neem contact op"
+  },
+  "about": {
+    "title": "Over Mij",
+    "education": "Tijdens Opleiding:",
+    "freeTime": "Vrije tijd:",
+    "paragraphs": {
+      "intro": "Ik ben Bjarne Vrijsen, recent afgestudeerd in Elektronica-ICT aan de UCLL met als afstudeerrichting ICT met een sterke focus op front-end ontwikkeling en moderne webtechnologieen.",
+      "study": "Tijdens mijn studie heb ik veel ervaring opgedaan met frameworks zoals Vue.js en TypeScript, en heb ik verschillende projecten gerealiseerd, waaronder applicaties in .NET MAUI en Kotlin.",
+      "career": "Op dit moment ben ik op zoek naar een uitdagende rol als front-end developer waar ik mijn technische vaardigheden verder kan ontwikkelen en kan bijdragen aan innovatieve, gebruiksvriendelijke digitale oplossingen."
+    },
+    "freeTimeSkills": {
+      "godot": "Godot",
+      "java": "Java",
+      "python": "Python",
+      "react": "React"
+    }
+  },
+  "experience": {
+    "title": "Ervaringen",
+    "items": {
+      "wisemen": {
+        "company": "Wisemen",
+        "period": "Februari 2024 - Mei 2024",
+        "role": "Stagiair Frontend Developer",
+        "location": "Diepenbeek",
+        "summary": "Tijdens mijn stage bij Wisemen werkte ik aan een project waarin ik een webapplicatie ontwikkelde met Vue.js en TypeScript."
+      },
+      "innovoltus": {
+        "company": "Innovoltus",
+        "period": "April 2025 - Heden",
+        "role": "Junior Frontend Developer",
+        "location": "Tessenderlo - Ham"
+      }
+    }
+  },
+  "projects": {
+    "title": "Projecten",
+    "readMore": "Lees Meer >",
+    "imageAlt": "project afbeelding",
+    "closeModal": "Sluit venster",
+    "items": {
+      "wiselate": {
+        "title": "Wiselate",
+        "descriptionShort": "Dit is mijn stageproject bij Wisemen waarin ik een webapplicatie ontwikkelde om websitevertalingen eenvoudiger te beheren.",
+        "descriptionLong": {
+          "first": "Tijdens mijn stage bij Wisemen werkte ik aan een project waarbij ik een webapplicatie ontwikkelde met Vue.js en TypeScript.",
+          "second": "Het doel van het project was om vertalingen voor een website eenvoudig te beheren. Hiervoor werd de GitHub API gebruikt om JSON-bestanden uit een bestaand project op te halen en vertalingen te bewerken of toe te voegen.",
+          "third": "Daarnaast gebruikte ik Tailwind CSS voor de styling van de applicatie. Voor de backend maakte ik gebruik van Supabase om gebruikers op te slaan.",
+          "fourth": "Ik gebruikte ook GitHub voor versiebeheer en Google OAuth voor authenticatie."
+        }
+      },
+      "movieApp": {
+        "title": "Movie App",
+        "descriptionShort": "Een app die ik tijdens mijn opleiding in .NET MAUI maakte. De app toont een overzicht van de populairste films en series van het moment.",
+        "descriptionLong": {
+          "first": "Tijdens mijn opleiding ontwikkelde ik een mobiele applicatie in .NET MAUI die de populairste films en series toont.",
+          "second": "De applicatie haalt data op via de OMDB API en toont die in een overzichtelijke lijst. De gebruiker kan doorklikken op een film voor meer details.",
+          "third": "Ik gebruikte ook SQLite om data lokaal op te slaan, zodat de app bruikbaar blijft zonder internetverbinding.",
+          "fourth": "Daarnaast kunnen gebruikers zoeken naar films en series en deze toevoegen aan hun favorieten. Dankzij .NET MAUI werkt de app op zowel Android als iOS."
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "introPrefix": "Stuur mij gerust een mail of een berichtje via",
+    "linkedinLabel": "LinkedIn",
+    "introSuffix": "als je contact wilt opnemen.",
+    "sendMail": "Stuur een mail"
+  },
+  "footer": {
+    "title": "Mijn Website",
+    "rights": "Alle rechten voorbehouden."
+  }
+}

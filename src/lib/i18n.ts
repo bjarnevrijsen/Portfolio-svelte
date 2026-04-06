@@ -1,8 +1,8 @@
 import { browser } from '$app/environment';
 import { addMessages, init, locale, _ } from 'svelte-i18n';
 import { derived } from 'svelte/store';
-import nl from '$lib/locales/nl.json';
-import en from '$lib/locales/en.json';
+import nl from '../locales/nl.json';
+import en from '../locales/en.json';
 
 export type AppLocale = 'nl' | 'en';
 

@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { aboutParagraphsByLocale, freeTimeSkillsByLocale, skills } from '$lib';
-	import { _, currentLocale } from '$lib/i18n';
+	import { aboutParagraphKeys, freeTimeSkillKeys, skills } from '$lib';
+	import { _ } from '$lib/i18n';
 </script>
 
 <section id="about">
 	<h1 class="titel" data-pseudo="after">{$_('about.title')}<span class="profile-function">.</span></h1>
 	<div class="about-content">
 		<div class="about-card">
-			{#each aboutParagraphsByLocale[$currentLocale] as paragraph}
-				<p>{paragraph}</p>
+			{#each aboutParagraphKeys as paragraphKey}
+				<p>{$_(paragraphKey)}</p>
 			{/each}
 		</div>
 		<div class="about-skills">
@@ -20,8 +20,8 @@
 			</div>
 			<h1>{$_('about.freeTime')}</h1>
 			<div class="circle-container">
-				{#each freeTimeSkillsByLocale[$currentLocale] as skill}
-					<span>{skill}</span>
+				{#each freeTimeSkillKeys as skillKey}
+					<span>{$_(skillKey)}</span>
 				{/each}
 			</div>
 		</div>

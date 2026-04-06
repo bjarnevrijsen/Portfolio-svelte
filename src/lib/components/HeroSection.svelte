@@ -7,7 +7,7 @@
 		<div class="app-name">
 			<p>{$_('hero.intro')}<span class="profile-function">.</span></p>
 		</div>
-		<h2>{$_('hero.rolePrefix')} <span class="profile-function">{$_('hero.role')}</span></h2>
+		<h2 class="text-(--muted)">{$_('hero.rolePrefix')} <span class="profile-function">{$_('hero.role')}</span></h2>
 		<p>{$_('hero.description')}</p>
 		<div class="hero-actions">
 			<a href="#project" class="hero-button">{$_('hero.viewProjects')}</a>
