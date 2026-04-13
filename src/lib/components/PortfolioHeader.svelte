@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { mdiMenu } from '@mdi/js';
 	import cv from '$lib/assets/cv.pdf';
 	import { _, currentLocale, setAppLocale } from '$lib/i18n';
 	import { clickOutside } from '$lib/util';
@@ -25,11 +26,11 @@
 	}
 </script>
 
-<header class="app-header">
+<header class="app-header" use:clickOutside={() => (isOpen = false)}>
 	<div class="header-left">
 		<button class="header-link name-link" onclick={() => scrollTo('home')}>Bjarne Vrijsen</button>
 	</div>
-	<nav class="navbar" class:show={isOpen} use:clickOutside={() => (isOpen = false)}>
+	<nav class="navbar" class:show={isOpen}>
 		<button class="header-link" onclick={() => scrollTo('about')}>{$_('header.about')}</button>
 		<button class="header-link" onclick={() => scrollTo('project')}>{$_('header.projects')}</button>
 		<button class="header-link" onclick={() => scrollTo('exp')}>{$_('header.experience')}</button>
@@ -37,20 +38,42 @@
 
 		<div class="mobile-actions">
 			<div class="locale-switch" aria-label={$_('header.languageLabel')}>
-				<button class="locale-button" class:active={$currentLocale === 'nl'} onclick={() => changeLocale('nl')}>NL</button>
-				<button class="locale-button" class:active={$currentLocale === 'en'} onclick={() => changeLocale('en')}>EN</button>
+				<button
+					class="locale-button"
+					class:active={$currentLocale === 'nl'}
+					onclick={() => changeLocale('nl')}>NL</button
+				>
+				<button
+					class="locale-button"
+					class:active={$currentLocale === 'en'}
+					onclick={() => changeLocale('en')}>EN</button
+				>
 			</div>
-			<a href={cv} target="_blank" rel="noreferrer" class="contact-button" onclick={closeMenu}>{$_('header.cv')}</a>
+			<a href={cv} target="_blank" rel="noreferrer" class="contact-button" onclick={closeMenu}
+				>{$_('header.cv')}</a
+			>
 		</div>
 	</nav>
 	<div class="header-actions desktop-actions">
 		<div class="locale-switch" aria-label={$_('header.languageLabel')}>
-			<button class="locale-button" class:active={$currentLocale === 'nl'} onclick={() => setAppLocale('nl')}>NL</button>
-			<button class="locale-button" class:active={$currentLocale === 'en'} onclick={() => setAppLocale('en')}>EN</button>
+			<button
+				class="locale-button"
+				class:active={$currentLocale === 'nl'}
+				onclick={() => setAppLocale('nl')}>NL</button
+			>
+			<button
+				class="locale-button"
+				class:active={$currentLocale === 'en'}
+				onclick={() => setAppLocale('en')}>EN</button
+			>
 		</div>
 		<a href={cv} target="_blank" rel="noreferrer" class="contact-button">{$_('header.cv')}</a>
 	</div>
-	<button class="menu-toggle" onclick={toggleMenu} aria-label="Open menu">☰</button>
+	<button class="menu-toggle" onclick={toggleMenu} aria-label="Open menu">
+		<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+			<path d={mdiMenu}></path>
+		</svg>
+	</button>
 </header>
 
 <style>
@@ -85,7 +108,10 @@
 		font-size: 0.98rem;
 		font-weight: 600;
 		border-radius: 999px;
-		transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+		transition:
+			background-color 0.25s ease,
+			color 0.25s ease,
+			transform 0.25s ease;
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -113,10 +139,17 @@
 		width: 42px;
 		height: 42px;
 		border-radius: 999px;
-		font-size: 1.5rem;
 		color: var(--text);
 		background: rgba(255, 255, 255, 0.08);
 		border: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.menu-toggle svg {
+		width: 22px;
+		height: 22px;
+		fill: currentColor;
+		display: block;
+		margin: 0 auto;
 	}
 
 	.contact-button {
@@ -129,7 +162,9 @@
 		font-weight: 700;
 		box-shadow: 0 18px 40px rgba(45, 225, 182, 0.22);
 		cursor: pointer;
-		transition: transform 0.25s ease, box-shadow 0.25s ease;
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease;
 		text-decoration: none;
 	}
 
@@ -190,39 +225,49 @@
 
 		.navbar {
 			position: fixed;
-			inset: auto 20px 0 20px;
-			top: 70px;
-			left: 0;
-			right: 0;
+			inset: 70px 0px auto 0px;
 			width: auto;
-			max-height: 320px;
+			display: flex;
 			flex-direction: column;
-			background: rgba(8, 17, 32, 0.96);
-			border-radius: 24px;
-			padding: 1rem;
-			box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
-			border: 1px solid rgba(255, 255, 255, 0.1);
-			display: none;
+			background: #081120;
+			border-radius: 14px;
+			padding: 0.75rem;
+			box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			gap: 0.5rem;
+			max-height: calc(100dvh - 82px);
+			overflow-y: auto;
+			opacity: 0;
+			transform: translateY(-8px);
+			pointer-events: none;
+			visibility: hidden;
+			transition:
+				opacity 0.2s ease,
+				transform 0.2s ease,
+				visibility 0.2s ease;
 		}
 
 		.navbar.show {
-			display: flex;
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: auto;
+			visibility: visible;
 		}
 
 		.navbar :global(button) {
-			padding: 0.75rem 1rem;
+			padding: 0.7rem 0.85rem;
 			display: block;
-			border-radius: 18px;
-			background: rgba(255, 255, 255, 0.04);
+			border-radius: 10px;
+			background: rgba(255, 255, 255, 0.05);
 			width: 100%;
 			text-align: left;
 		}
 
 		.mobile-actions {
 			display: grid;
-			gap: 0.75rem;
-			padding-top: 0.6rem;
-			margin-top: 0.4rem;
+			gap: 0.5rem;
+			padding-top: 0.5rem;
+			margin-top: 0.2rem;
 			border-top: 1px solid rgba(255, 255, 255, 0.1);
 		}
 
@@ -231,7 +276,15 @@
 		}
 
 		.mobile-actions .contact-button {
-			width: fit-content;
+			width: 100%;
+			text-align: center;
+		}
+
+		.locale-button {
+			width: 32px;
+			height: 32px;
+			font-size: 0.65rem;
+			border-radius: 999px;
 		}
 
 		.menu-toggle {
