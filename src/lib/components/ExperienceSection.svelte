@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import { experiences } from '$lib';
 	import ExperienceCard from './ExperienceCard.svelte';
 	import { _ } from '$lib/i18n';
 	import type { Experience } from '$lib';

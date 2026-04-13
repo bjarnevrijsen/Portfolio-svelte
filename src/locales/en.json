@@ -49,7 +49,8 @@
         "company": "Innovoltus",
         "period": "April 2025 - Present",
         "role": "Junior Frontend Developer",
-        "location": "Tessenderlo - Ham"
+        "location": "Tessenderlo - Ham",
+        "summary": "At Innovoltus I developed an EMS portal in which energy data was visualized via power flows and graphs. \nI also built a complete PWA that allows users to control and monitor their charging stations and smart plugs."
       }
     }
   },

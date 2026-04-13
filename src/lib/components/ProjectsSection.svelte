@@ -5,7 +5,9 @@
 </script>
 
 <section id="project">
-	<h1 class="titel" data-pseudo="before">{$_('projects.title')}<span class="profile-function">.</span></h1>
+	<h1 class="titel" data-pseudo="before">
+		{$_('projects.title')}<span class="profile-function">.</span>
+	</h1>
 	<div class="project-section">
 		{#each projects as project}
 			<ProjectCard {project} />

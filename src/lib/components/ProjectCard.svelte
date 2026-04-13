@@ -17,11 +17,17 @@
 </script>
 
 <div>
-	<div class="project-card" role="button" tabindex="0" onclick={openModal} onkeydown={(e) => e.key === 'Enter' && openModal()}>
+	<div
+		class="project-card"
+		role="button"
+		tabindex="0"
+		onclick={openModal}
+		onkeydown={(e) => e.key === 'Enter' && openModal()}
+	>
 		<img src={project.imageFrontSrc} alt={$_(project.title)} class="project-card-image" />
 	</div>
 	<h3 class="project-card-title">{$_(project.title)}</h3>
-	<div class="circle-container">
+	<div class="circle-container ml-3">
 		{#each project.tags as tag}
 			<span>{tag}</span>
 		{/each}
@@ -33,10 +39,23 @@
 </div>
 
 {#if isModalOpen}
-	<div class="modal-overlay" role="button" tabindex="0" onclick={closeModal} onkeydown={(e) => e.key === 'Escape' && closeModal()}>
-		<button class="close-button" onclick={closeModal} aria-label={$_('projects.closeModal')}>X</button>
+	<div
+		class="modal-overlay"
+		role="button"
+		tabindex="0"
+		onclick={closeModal}
+		onkeydown={(e) => e.key === 'Escape' && closeModal()}
+	>
+		<button class="close-button" onclick={closeModal} aria-label={$_('projects.closeModal')}
+			>X</button
+		>
 		<!-- svelte-ignore a11y_interactive_supports_focus -->
-		<div class="modal-content" role="dialog" onclick={(e) => e.stopPropagation()} onkeydown={() => {}}>
+		<div
+			class="modal-content"
+			role="dialog"
+			onclick={(e) => e.stopPropagation()}
+			onkeydown={() => {}}
+		>
 			{#if project.imageSrc && project.imageSrc.length > 0}
 				<img class="modal-image" src={project.imageSrc[0]} alt={$_('projects.imageAlt')} />
 			{/if}
@@ -70,7 +89,10 @@
 		background: rgba(9, 18, 34, 0.88);
 		border: 1px solid rgba(255, 255, 255, 0.08);
 		box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
-		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease,
+			border-color 0.25s ease;
 		cursor: pointer;
 		overflow: hidden;
 	}
@@ -116,38 +138,14 @@
 		border-radius: 999px;
 		padding: 0.75rem 1.2rem;
 		cursor: pointer;
-		transition: transform 0.2s ease, background 0.2s ease;
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease;
 	}
 
 	.project-card-button:hover {
 		transform: translateY(-1px);
 		background: rgba(51, 227, 184, 0.22);
-	}
-
-	.circle-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-		gap: 0.75rem;
-		margin: 0 1.25rem;
-	}
-
-	.circle-container span {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		min-height: 42px;
-		padding: 0 1rem;
-		background: rgba(255, 255, 255, 0.06);
-		color: var(--text);
-		font-size: 0.95rem;
-		border-radius: 999px;
-		border: 1px solid rgba(51, 227, 184, 0.18);
-		transition: transform 0.25s ease, background-color 0.25s ease;
-	}
-
-	.circle-container span:hover {
-		transform: translateY(-2px);
-		background: rgba(51, 227, 184, 0.14);
 	}
 
 	/* Modal styles */

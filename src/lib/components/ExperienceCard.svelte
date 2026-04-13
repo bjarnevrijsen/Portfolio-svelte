@@ -62,32 +62,6 @@
 		font-size: 1.05em;
 	}
 
-	.circle-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-		gap: 0.75rem;
-		margin-top: 1rem;
-	}
-
-	.circle-container span {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		min-height: 42px;
-		padding: 0 1rem;
-		background: rgba(255, 255, 255, 0.06);
-		color: var(--text);
-		font-size: 0.95rem;
-		border-radius: 999px;
-		border: 1px solid rgba(51, 227, 184, 0.18);
-		transition: transform 0.25s ease, background-color 0.25s ease;
-	}
-
-	.circle-container span:hover {
-		transform: translateY(-2px);
-		background: rgba(51, 227, 184, 0.14);
-	}
-
 	@media (max-width: 720px) {
 		.exp-card {
 			padding: 1.4rem;
