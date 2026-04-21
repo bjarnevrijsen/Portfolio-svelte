@@ -18,7 +18,7 @@ export type Project = {
 export type SocialLink = {
 	label: string;
 	href: string;
-	icon: string;
+	icon: 'github' | 'linkedin' | 'email';
 };
 
 export type Experience = {
@@ -32,13 +32,17 @@ export type Experience = {
 
 export const contact = {
 	email: 'bjarne.vrijsen6@hotmail.com',
-	location: 'Diepenbeek, België',
+	location: 'Diepenbeek, België'
 };
 
 export const socials: SocialLink[] = [
-	{ label: 'GitHub', href: 'https://github.com/yourusername', icon: '🐙' },
-	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/', icon: '🔗' },
-	{ label: 'Twitter', href: 'https://twitter.com/yourusername', icon: '🐦' },
+	{ label: 'Email', href: `mailto:${contact.email}`, icon: 'email' },
+	{ label: 'GitHub', href: 'https://github.com/bjarnevrijsen', icon: 'github' },
+	{
+		label: 'LinkedIn',
+		href: 'https://www.linkedin.com/in/bjarne-vrijsen-4283a31a2/',
+		icon: 'linkedin'
+	}
 ];
 
 export const skills = [
@@ -56,7 +60,7 @@ export const skills = [
 	'SQL',
 	'Node.js',
 	'PHP',
-	'C',
+	'C'
 ];
 
 export const aboutParagraphKeys = [
@@ -71,7 +75,6 @@ export const freeTimeSkillKeys = [
 	'about.freeTimeSkills.python',
 	'about.freeTimeSkills.react'
 ];
-
 
 export const projects: Project[] = [
 	{
@@ -103,4 +106,3 @@ export const projects: Project[] = [
 		imageSrc: [mauiScreen, screenshot1, screenshot2, kotlinIcon]
 	}
 ];
-

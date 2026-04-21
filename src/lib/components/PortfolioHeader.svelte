@@ -166,6 +166,8 @@
 			transform 0.25s ease,
 			box-shadow 0.25s ease;
 		text-decoration: none;
+		width: 10rem;
+		text-align: center;
 	}
 
 	.header-actions {
