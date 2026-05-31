@@ -105,4 +105,18 @@ export const projects: Project[] = [
 		imageFrontSrc: mauiIcon,
 		imageSrc: [mauiScreen, screenshot1, screenshot2, kotlinIcon]
 	}
+	// {
+	// 	title: 'projects.items.godot.title',
+	// 	descriptionShort: 'projects.items.godot.descriptionShort',
+	// 	descriptionLong: [
+	// 		'projects.items.godot.descriptionLong.first',
+	// 		'projects.items.godot.descriptionLong.second',
+	// 		'projects.items.godot.descriptionLong.third',
+	// 		'projects.items.godot.descriptionLong.fourth'
+	// 	],
+	// 	link: 'https://example.com/godot-project',
+	// 	tags: ['Godot Engine', 'GDScript', 'Game Development', 'GitHub'],
+	// 	imageFrontSrc: kotlinIcon,
+	// 	imageSrc: [kotlinIcon, mauiScreen, screenshot1, screenshot2]
+	// }
 ];
